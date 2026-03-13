@@ -1,20 +1,21 @@
 import {MainLayout} from "@/layouts";
-import {ProductList} from "@features/products/components";
+import {ProductList, FilterList} from "@features/products/components";
 import styles from "./HomePage.module.scss"
 import {useProducts} from "@/store";
 import {useEffect} from "react";
 
 export const HomePage = () => {
-    const { products, fetchProducts } = useProducts()
+    const { fetchProducts } = useProducts()
 
     useEffect(() => {
         fetchProducts()
-    }, [])
+    }, [fetchProducts])
 
     return (
         <MainLayout>
             <div className={styles.content}>
-                <ProductList products={products} />
+                <FilterList />
+                <ProductList />
             </div>
         </MainLayout>
     )

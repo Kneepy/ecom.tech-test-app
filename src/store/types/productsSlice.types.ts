@@ -1,7 +1,7 @@
 import type {Product} from "@/api";
 
 export interface ProductFilter {
-    category?: string
+    categories?: string[]
     search?: string
     minPrice?: number
     maxPrice?: number;

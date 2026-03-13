@@ -1,6 +1,6 @@
 import {useStore} from "@/store";
 import {useCallback, useMemo} from "react";
-import type {ProductFilter} from "@store/types";
+import type { ProductFilter } from "../types";
 
 export const useProducts = () => {
     const products = useStore(state => state.products);
@@ -14,7 +14,7 @@ export const useProducts = () => {
     const getCategories = useStore(state => state.getCategories);
     const getPriceRange = useStore(state => state.getPriceRange);
 
-    const updateFilters = useCallback(async (newFilters: Partial<ProductFilter>) => {
+    const updateFilters = useCallback((newFilters: ProductFilter) => {
         setFilters(newFilters);
     }, [setFilters]);
 
@@ -23,7 +23,7 @@ export const useProducts = () => {
 
     const hasFilters = useMemo(() => {
         return !!(
-            filters.category ||
+            filters.categories ||
             filters.search ||
             filters.minPrice ||
             filters.maxPrice ||
@@ -33,7 +33,7 @@ export const useProducts = () => {
 
     const activeFiltersCount = useMemo(() => {
         let count = 0;
-        if (filters.category) count++;
+        if (filters.categories) count++;
         if (filters.search) count++;
         if (filters.minPrice) count++;
         if (filters.maxPrice) count++;

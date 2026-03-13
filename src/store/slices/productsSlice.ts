@@ -20,6 +20,7 @@ export const createProductSlice: StateCreator<ProductsSlice, [], [], ProductsSli
                 products,
                 isLoading: false
             })
+            get().applyFilters()
 
             return products
         } catch (e) {
@@ -43,7 +44,7 @@ export const createProductSlice: StateCreator<ProductsSlice, [], [], ProductsSli
         const { filters, products } = get();
 
         const filtered = products.filter(product => {
-            if (filters.category && product.category !== filters.category) {
+            if (filters.categories && !filters.categories.includes(product.category)) {
                 return false
             }
 
@@ -61,7 +62,10 @@ export const createProductSlice: StateCreator<ProductsSlice, [], [], ProductsSli
             if (filters.maxPrice !== undefined && product.price > filters.maxPrice) {
                 return false;
             }
+
+            return true
         })
+
         const sorted = filtered.sort((a, b) => {
             let comparison = 0;
 
