@@ -4,6 +4,7 @@ import * as path from "node:path";
 
 export default defineConfig({
     plugins: [react()],
+    base: '/ecom.tech-test-app/',
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
