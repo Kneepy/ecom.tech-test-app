@@ -27,3 +27,6 @@ dist-ssr
 *.css.map
 *.min.css
 *.min.css.map
+
+vite.config.js
+vite.config.d.ts
