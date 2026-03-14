@@ -1,6 +1,6 @@
 import type {StateCreator} from "zustand/vanilla";
 import type {ProductFilter, ProductsSlice, ProductsState} from "@store/types";
-import {ProductApi} from "@/api";
+import {MockProductApi} from "@/api";
 
 const initialState: ProductsState = {
     filteredProducts: [],
@@ -14,7 +14,7 @@ export const createProductSlice: StateCreator<ProductsSlice, [], [], ProductsSli
     async fetchProducts() {
         try {
             set({ isLoading: true })
-            const products = await ProductApi.getAll()
+            const products = await MockProductApi.getAll()
 
             set({
                 products,
@@ -44,7 +44,7 @@ export const createProductSlice: StateCreator<ProductsSlice, [], [], ProductsSli
         const { filters, products } = get();
 
         const filtered = products.filter(product => {
-            if (filters.categories && !filters.categories.includes(product.category)) {
+            if (filters.categories && !filters.categories.includes(product.category) && filters.categories?.length !== 0) {
                 return false
             }
 

@@ -1,3 +1,18 @@
 .filter {
     cursor: pointer;
+    background-color: $h_button_background;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-weight: 600;
+    font-size: 14px;
+    color: $primary_text_color;
+    height: 35px;
+
+    &.active {
+        background-color: $dark_button_background;
+    }
+
+    &:hover {
+        background-color: $dark_button_background;
+    }
 }

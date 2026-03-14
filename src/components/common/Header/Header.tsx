@@ -1,13 +1,12 @@
 import styles from "./Header.module.scss"
-import {Icon} from "@components/ui";
+import {Icon, Input} from "@components/ui";
 import {useProducts} from "@/store";
-import type {ChangeEvent} from "react";
 
 export const Header = () => {
     const { setFilters, filters } = useProducts()
 
-    const search = (e: ChangeEvent<HTMLInputElement>) => {
-        setFilters({ search: e.target.value })
+    const search = (value: string) => {
+        setFilters({ search: value })
     }
 
     return (
@@ -15,9 +14,9 @@ export const Header = () => {
             <div className="logo"></div>
             <div className={styles.search}>
                 <Icon name="search" className={styles.searchIcon} />
-                <input
-                    className={styles.searchInput}
+                <Input
                     value={filters.search ?? ""}
+                    className={styles.searchInput}
                     onChange={search}
                     placeholder="Искать на сайте"
                     type="text"

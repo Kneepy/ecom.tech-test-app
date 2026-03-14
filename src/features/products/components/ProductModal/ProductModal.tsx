@@ -1,4 +1,4 @@
-import {Modal, type ModalProps} from "@components/ui";
+import {Button, Icon, Modal, type ModalProps} from "@components/ui";
 import styles from "./ProductModal.module.scss"
 import type {Product} from "@/api";
 
@@ -10,14 +10,25 @@ export const ProductModal = ({ onClose, isOpen, product }: Props) => {
     if (!product) return null
 
     return (
-        <>
-            <Modal onClose={onClose} isOpen={isOpen}>
-                <div className={styles.productModal}>
-                    <div className={styles.preview} style={{backgroundImage: `url(${product.image})`}}></div>
-                    <div className={styles.title}>{product.title}</div>
-                    <div className={styles.price}>{product.price}</div>
+        <Modal onClose={onClose} isOpen={isOpen} className={styles.productModal}>
+            <div className={styles.productMedia}>
+                <div className={styles.media} style={{backgroundImage: `url(${product.image})`}}></div>
+            </div>
+            <div className={styles.productInfo}>
+                <div className={styles.contentBox}>
+                    <div className={styles.productTitle}>
+                        <span className={styles.title}>{product.title}</span>
+                    </div>
+                    <div className={styles.productDescription}>
+                        <div className={styles.title}>Описание</div>
+                        <div className={styles.description}>{product.description}</div>
+                    </div>
                 </div>
-            </Modal>
-        </>
+                <Button className={styles.buyBtn}>{product.price} ₽</Button>
+            </div>
+            <Button className={styles.closeBtn} onClick={onClose}>
+                <Icon name="close" className={styles.icon}/>
+            </Button>
+        </Modal>
     )
 }

@@ -1,29 +1,37 @@
-import {type MouseEvent, useEffect, useRef} from "react";
+import {type MouseEvent, useEffect} from "react";
 import {createPortal} from "react-dom";
 import styles from "./Modal.module.scss";
 import type {ModalProps} from "./Modal.types";
 
 export const Modal = (
-    { onClose, isOpen, children }: ModalProps
+    { onClose, isOpen, children, className }: ModalProps
 ) => {
-    const contentRef = useRef<HTMLDivElement>(null)
-
     const preventClick = (e: MouseEvent<HTMLDivElement>) => {
         e.stopPropagation()
     }
 
     useEffect(() => {
-        console.log(onClose, isOpen)
-    }, []);
+        const handleEscPress = (e: KeyboardEvent) => e.key === "Escape" && onClose()
+
+        document.addEventListener("keydown", handleEscPress)
+
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        }
+
+        return () => {
+            document.removeEventListener("keydown", handleEscPress);
+            document.body.style.overflow = "auto";
+        };
+    }, [onClose]);
 
     if (!isOpen) return null
 
+
     return createPortal((
         <div onClick={onClose} className={styles.modal}>
-            <div className={styles.modalBox}>
-                <div onClick={preventClick} className={styles.modalContent} ref={contentRef}>
-                    {children}
-                </div>
+            <div onClick={preventClick}  className={className}>
+                { children }
             </div>
         </div>
     ), document.body)

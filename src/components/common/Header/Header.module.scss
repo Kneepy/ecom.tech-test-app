@@ -14,23 +14,8 @@
         position: relative;
 
         .searchInput {
-            height: 45px;
-            flex: 1;
-            font-weight: bold;
-            border-radius: 25px;
-            border: none;
-            outline: none;
             padding: 0 50px;
-            font-size: 16px;
-            background-color: $input_background;
-            &:hover, &:focus {
-                background-color: $h_input_background;
-            }
-
-            &::placeholder {
-                font-weight: bold;
-                color: $second_text_color;
-            }
+            width: 100%;
         }
         .searchIcon {
             position: absolute;

@@ -4,14 +4,14 @@ import classnames from "classnames"
 
 interface IconProps {
     name: string
-    variant?: "filled" | "outlined" | "round" | "sharp" | "two-tone"
+    variant?: "filled" | "outlined" | "rounded" | "sharp" | "two-tone"
     size?: number | string
     color?: string
     className?: string
 }
 
 export const Icon = ({
-    name, variant = "round", size = 24, color, className
+    name, variant = "rounded", size = 24, color, className
 }: IconProps) => {
 
     const style: React.CSSProperties = {
@@ -22,7 +22,7 @@ export const Icon = ({
 
     return (
         <span
-            className={classnames(`material-icons${variant !== "filled" ? `-${variant}` : ''} ${className || ''}`, styles.icon)}
+            className={classnames(`material-symbols${variant !== "filled" ? `-${variant}` : ''} ${className || ''}`, styles.icon)}
             style={style}
         >
             { name }

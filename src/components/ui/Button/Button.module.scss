@@ -1,0 +1,13 @@
+.button {
+    border: none;
+    outline: none;
+    background-color: $button_background;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $h_button_background;
+    }
+}

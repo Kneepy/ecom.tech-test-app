@@ -1,14 +1,18 @@
 import style from "./Filter.module.scss"
+import {Button} from "@components/ui"
+import React from "react"
+import classnames from "classnames";
 
 interface Props {
     onClick?: () => void
-    text: string
+    active?: boolean
+    children?: React.ReactNode
 }
 
-export const Filter = ({ onClick = () => {}, text }: Props) => {
+export const Filter = ({ onClick = () => {}, children, active }: Props) => {
     return (
-        <div className={style.filter} onClick={onClick}>
-            { text }
-        </div>
+        <Button className={classnames(style.filter, active && style.active)} onClick={onClick}>
+            { children }
+        </Button>
     )
 }

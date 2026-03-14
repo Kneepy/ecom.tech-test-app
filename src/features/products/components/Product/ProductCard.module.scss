@@ -2,16 +2,34 @@
     background-color: $block_background;
     display: flex;
     flex-direction: column;
-    padding: 10px 20px;
+    padding: 10px;
     border-radius: 20px;
-
+    cursor: pointer;
     .title {
-
+        @include line-clamp(2);
+        margin: 10px 0;
+        font-size: 14px;
+        flex: 1;
     }
     .preview {
-
+        background-position: center;
+        background-size: cover;
+        border-radius: 20px;
+        aspect-ratio: 1;
     }
     .price {
-
+        background-color: $action_button_background_5;
+        color: $action_text_color;
+        border-radius: 20px;
+        height: 35px;
+        font-size: 16px;
+        font-weight: 600;
+        justify-self: end;
+        width: 100px;
+    }
+    &:hover {
+        .price {
+            background-color: $action_button_background;
+        }
     }
 }

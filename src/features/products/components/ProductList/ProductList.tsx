@@ -1,25 +1,15 @@
 import styles from "./ProductList.module.scss"
 import type { Product as ProductType } from "@/api";
-import {useMemo, useState} from "react";
+import {useState} from "react";
 import { ProductCard } from "../Product";
 import {ProductModal} from "@features/products/components";
 import {useProducts} from "@/store";
 
-interface Props {
-    columns?: number;
-    gap?: number | string;
-}
-
-export const ProductList = ({ columns = 5, gap = 20 }: Props) => {
+export const ProductList = () => {
     const [isOpenProductModal, setIsOpenProductModal] = useState(false);
     const [currentProduct, setCurrentProduct] = useState<ProductType | null>(null);
 
     const { filteredProducts } = useProducts()
-
-    const style = useMemo(() => ({
-        gap: typeof gap === "string" ? gap : `${gap}px`,
-        gridTemplateColumns: `repeat(${columns}, 1fr)`
-    }), [columns, gap]);
 
     const openProductModal = (product: ProductType) => {
         setIsOpenProductModal(true);
@@ -30,7 +20,7 @@ export const ProductList = ({ columns = 5, gap = 20 }: Props) => {
     }
 
     return (
-        <div className={styles.productList} style={style}>
+        <div className={styles.productList}>
             {
                 filteredProducts.map((product) =>
                     <ProductCard
