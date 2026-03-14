@@ -2,8 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import * as path from "node:path";
 
-console.log('VITE CONFIG LOADED');
-console.log('BASE URL:', '/ecom.tech-test-app/')
 export default defineConfig({
     plugins: [react()],
     base: '/ecom.tech-test-app/',
