@@ -1,7 +1,7 @@
 .productModal {
     background-color: $block_background;
     width: 700px;
-    height: 350px;
+    height: 450px;
     border-radius: 25px;
     display: flex;
     position: relative;
@@ -22,7 +22,7 @@
 
     .productInfo {
         flex: .5;
-        padding: 20px;
+        padding: 0 20px 20px;
         display: flex;
         flex-direction: column;
         .contentBox {
@@ -37,6 +37,7 @@
                 margin-bottom: 10px;
                 .title {
                     flex: 1;
+                    padding-top: 20px;
                     font-weight: 700;
                     font-size: 21px;
                     color: $primary_text_color;
@@ -57,9 +58,9 @@
             }
         }
         .buyBtn {
-            height: 40px;
+            height: 56px;
             border-radius: 25px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             background-color: $action_button_background;
             color: $action_text_color;

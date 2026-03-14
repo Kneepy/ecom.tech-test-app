@@ -3,13 +3,13 @@ import testImage from "@assets/images/test.png"
 
 export const MockProductApi = {
     async getAll(): Promise<Product[]> {
-        return new Promise((resolve) => resolve(Array(5).fill(1).map((_, i) => ({
+        return new Promise((resolve) => resolve(Array(20).fill(1).map((_, i) => ({
             id: i,
-            title: `Hello ${i + 1}`,
-            price: 100*i,
-            category: `category ${i + 1}`,
+            title: `Product ${i} Звук клавиш печатной машинки развеял последние сомнения`,
+            price: Math.round(1000*Math.random()),
+            category: `category ${i%4}`,
             image: testImage,
-            description: `Hello world ${i + 1}`,
+            description: `Принимая во внимание показатели успешности, высокое качество позиционных исследований позволяет оценить значение глубокомысленных рассуждений. Не следует, однако, забывать, что реализация намеченных плановых заданий влечет за собой процесс внедрения и модернизации переосмысления внешнеэкономических политик.`,
         }))))
     }
 }

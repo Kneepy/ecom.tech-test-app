@@ -2,9 +2,11 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import * as path from "node:path";
 
+console.log('VITE CONFIG LOADED');
+console.log('BASE URL:', '/ecom.tech-test-app/')
 export default defineConfig({
     plugins: [react()],
-    base: './',
+    base: '/ecom.tech-test-app/',
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
@@ -27,14 +29,6 @@ export default defineConfig({
         },
     },
     build: {
-        sourcemap: true,
-        rollupOptions: {
-            output: {
-                manualChunks: undefined,
-                assetFileNames: 'assets/[name]-[hash][extname]',
-                chunkFileNames: 'assets/[name]-[hash].js',
-                entryFileNames: 'assets/[name]-[hash].js',
-            },
-        }
-    },
+        sourcemap: true
+    }
 })

@@ -9,7 +9,11 @@
         @include line-clamp(2);
         margin: 10px 0;
         font-size: 14px;
+        line-height: 13px;
+        letter-spacing: .01px;
+        font-weight: 600;
         flex: 1;
+        color: $block_text_color;
     }
     .preview {
         background-position: center;
@@ -18,18 +22,19 @@
         aspect-ratio: 1;
     }
     .price {
-        background-color: $action_button_background_5;
-        color: $action_text_color;
+        background-color: $second_action_button_background;
+        color: $button_text_color;
         border-radius: 20px;
-        height: 35px;
-        font-size: 16px;
+        height: 36px;
+        font-size: 13px;
         font-weight: 600;
         justify-self: end;
-        width: 100px;
+        padding: 7px 32px;
+        width: fit-content;
     }
     &:hover {
         .price {
-            background-color: $action_button_background;
+            background-color: $second_action_button_background_hover;
         }
     }
 }
