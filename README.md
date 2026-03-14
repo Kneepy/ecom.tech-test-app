@@ -31,19 +31,33 @@ There are a lot of GIFs here, you may have to wait
 ### Search.
 Live search. Those who are immediately looking for a suitable product upon introduction
 
-![Search](docs/assets/1.mp4)
+Before
+![Search](docs/assets/1.png)
+
+After
+
+![Search](docs/assets/2.png)
 
 ### Product modal view.
 Product viewing is implemented through modal windows
 
-![Product modal](docs/assets/2.mp4)
+![Product modal](docs/assets/5.png)
 
 ### Filters.
 Filters are made for sorting by cost and product categories.
 
-![Filters](docs/assets/3.mp4)
+![Filters](docs/assets/3.png)
+
+Filters modal
+
+![Filters](docs/assets/4.png)
 
 ### Adaptability.
 Responsive design for desktops, laptops, tablets, and phones
 
-![Adaptability](docs/assets/4.mp4)
+![Adaptability](docs/assets/7.png)
+
+![Adaptability](docs/assets/6.png)
+
+
+
