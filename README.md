@@ -52,6 +52,6 @@ Responsive design for desktops, laptops, tablets, and phones
 <details>
   <summary>Нажмите, чтобы увидеть демо (60 МБ)</summary>
   
-  ![Демо GIF](https://github.com/Kneepy/ecom.tech-test-app.git/raw/master/docs/assets/1.gif)
+  ![Демо GIF](https://raw.githubusercontent.com/Kneepy/ecom.tech-test-app.git/raw/master/docs/assets/1.gif)
 </details>
 
