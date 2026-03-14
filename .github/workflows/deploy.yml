@@ -28,9 +28,10 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./dist
           publish_branch: gh-pages
           force_orphan: true
           user_name: 'Kneepy'
           user_email: 'ilyafamin4@gmail.com'
+          enable_jekyll: false

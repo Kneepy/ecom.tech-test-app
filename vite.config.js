@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import * as path from "node:path";
 export default defineConfig({
     plugins: [react()],
+    base: './ecom.tech-test-app/',
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
@@ -20,8 +21,19 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             scss: {
-                additionalData: `@use "@/styles/variables" as *;`
+                additionalData: `@use "@styles/variables" as *;`
             },
         },
+    },
+    build: {
+        sourcemap: true,
+        rollupOptions: {
+            output: {
+                manualChunks: undefined,
+                assetFileNames: 'assets/[name]-[hash][extname]',
+                chunkFileNames: 'assets/[name]-[hash].js',
+                entryFileNames: 'assets/[name]-[hash].js',
+            },
+        }
     },
 });
