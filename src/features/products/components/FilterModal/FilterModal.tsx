@@ -1,32 +1,24 @@
 import {Button, Icon, Input, Modal, type ModalProps} from "@components/ui";
 import styles from "./FilterModal.module.scss"
 import {useProducts} from "@/store";
+import {memo, useCallback} from "react";
 
-export const FilterModal = ({ onClose, isOpen }: ModalProps) => {
+export const FilterModal = memo(({ onClose, isOpen }: ModalProps) => {
     const { filters, setFilters } = useProducts()
 
-    const setMinPrice = (value: string) => {
+    const setPriceFilter = useCallback((key: "minPrice" | "maxPrice", value: string) => {
         if (value === "") {
-            setFilters({ minPrice: undefined })
+            setFilters({ [key]: undefined })
             return
         }
-        if (isNaN(Number(value))) {
-            return
+        const num = Number(value)
+        if (!isNaN(num)) {
+            setFilters({ [key]: num })
         }
+    }, [setFilters])
 
-        setFilters({ minPrice: Number(value) })
-    }
-    const setMaxPrice = (value: string) => {
-        if (value === "") {
-            setFilters({ maxPrice: undefined })
-            return
-        }
-        if (isNaN(Number(value))) {
-            return
-        }
-
-        setFilters({ maxPrice: Number(value) })
-    }
+    const handleMinPrice = useCallback((v: string) => setPriceFilter("minPrice", v), [setPriceFilter])
+    const handleMaxPrice = useCallback((v: string) => setPriceFilter("maxPrice", v), [setPriceFilter])
 
     return (
         <Modal onClose={onClose} isOpen={isOpen} className={styles.filterModal}>
@@ -44,13 +36,13 @@ export const FilterModal = ({ onClose, isOpen }: ModalProps) => {
                     <div className={styles.filterContent}>
                         <Input
                             value={`${filters.minPrice ?? ""}`}
-                            onChange={(v) => setMinPrice(v)}
+                            onChange={handleMinPrice}
                             className={styles.rageInput}
                             placeholder="От"
                         />
                         <Input
                             value={`${filters.maxPrice ?? ""}`}
-                            onChange={(v) => setMaxPrice(v)}
+                            onChange={handleMaxPrice}
                             className={styles.rageInput}
                             placeholder="До"
                         />
@@ -59,4 +51,4 @@ export const FilterModal = ({ onClose, isOpen }: ModalProps) => {
             </div>
         </Modal>
     )
-}
+})

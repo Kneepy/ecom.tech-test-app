@@ -1,6 +1,7 @@
 import type {StateCreator} from "zustand/vanilla";
 import type {ProductFilter, ProductsSlice, ProductsState} from "@store/types";
 import {MockProductApi} from "@/api";
+import {applyFiltersToProducts} from "@store/utils/productsSlice.utils.ts";
 
 const initialState: ProductsState = {
     filteredProducts: [],
@@ -15,70 +16,35 @@ export const createProductSlice: StateCreator<ProductsSlice, [], [], ProductsSli
         try {
             set({ isLoading: true })
             const products = await MockProductApi.getAll()
+            const { filters } = get()
+            const filteredProducts = applyFiltersToProducts(products, filters)
 
             set({
                 products,
+                filteredProducts,
                 isLoading: false
             })
-            get().applyFilters()
 
             return products
         } catch (e) {
             console.log(e)
+            set({ isLoading: false })
         }
     },
     setFilters(filters: ProductFilter) {
-        const currentFilters = get().filters
-        set({
-            filters: { ...currentFilters, ...filters },
-        })
+        const { filters: currentFilters, products } = get()
+        const newFilters = { ...currentFilters, ...filters }
+        const filteredProducts = applyFiltersToProducts(products, newFilters)
 
-        get().applyFilters()
+        set({
+            filters: newFilters,
+            filteredProducts
+        })
     },
     clearFilters() {
-        set({ filters: {} })
-
-        get().applyFilters()
-    },
-    applyFilters() {
-        const { filters, products } = get();
-
-        const filtered = products.filter(product => {
-            if (filters.categories && !filters.categories.includes(product.category) && filters.categories?.length !== 0) {
-                return false
-            }
-
-            if (filters.search) {
-                const searchLower = filters.search.toLowerCase()
-                const titleMatch = product.title.toLowerCase().includes(searchLower)
-                const descriptionMatch = product.description.toLowerCase().includes(searchLower)
-
-                if (!titleMatch && !descriptionMatch) return false
-            }
-
-            if (filters.minPrice !== undefined && product.price < filters.minPrice) {
-                return false;
-            }
-            if (filters.maxPrice !== undefined && product.price > filters.maxPrice) {
-                return false;
-            }
-
-            return true
-        })
-
-        const sorted = filtered.sort((a, b) => {
-            let comparison = 0;
-
-            if (filters.sortBy === 'price') {
-                comparison = a.price - b.price;
-            } else if (filters.sortBy === 'title') {
-                comparison = a.title.localeCompare(b.title);
-            }
-
-            return filters.sortOrder === 'asc' ? comparison : -comparison;
-        })
-
-        set({ filteredProducts: sorted })
+        const { products } = get()
+        const filteredProducts = applyFiltersToProducts(products, {})
+        set({ filters: {}, filteredProducts })
     },
 
     getCategories() {

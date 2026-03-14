@@ -1,12 +1,13 @@
 import {Button, Icon, Modal, type ModalProps} from "@components/ui";
 import styles from "./ProductModal.module.scss"
 import type {Product} from "@/api";
+import {memo} from "react";
 
 interface Props extends ModalProps {
     product: Product
 }
 
-export const ProductModal = ({ onClose, isOpen, product }: Props) => {
+export const ProductModal = memo(({ onClose, isOpen, product }: Props) => {
     if (!product) return null
 
     return (
@@ -31,4 +32,4 @@ export const ProductModal = ({ onClose, isOpen, product }: Props) => {
             </Button>
         </Modal>
     )
-}
+})

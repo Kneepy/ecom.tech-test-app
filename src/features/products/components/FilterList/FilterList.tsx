@@ -1,7 +1,7 @@
 import {useProducts} from "@/store";
 import {Filter, FilterModal} from "@features/products/components";
 import styles from "./FilterList.module.scss"
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import {Icon} from "@components/ui";
 
 export const FilterList = () => {
@@ -9,7 +9,7 @@ export const FilterList = () => {
 
     const { categories, filters, setFilters } = useProducts()
 
-    const selectCategory = (category: string) => {
+    const selectCategory = useCallback((category: string) => {
         const currentCategories = Array.isArray(filters.categories) ? filters.categories : [] as string[]
 
         if (currentCategories.includes(category)) {
@@ -17,12 +17,12 @@ export const FilterList = () => {
             return
         }
 
-        currentCategories.push(category)
-        setFilters({ categories: currentCategories })
-    }
+        setFilters({ categories: [...currentCategories, category] })
+    }, [filters.categories, setFilters])
+
     const categoryIsActive = (category: string) => filters.categories?.includes(category) ?? false
-    const openFilterModal = () => setIsOpenFilterModal(true)
-    const closeFilterModal = () => setIsOpenFilterModal(false)
+    const openFilterModal = useCallback(() => setIsOpenFilterModal(true), [])
+    const closeFilterModal = useCallback(() => setIsOpenFilterModal(false), [])
 
     return (
         <div className={styles.filterList}>
@@ -31,8 +31,8 @@ export const FilterList = () => {
             </Filter>
 
             {
-                categories.map((category, index) => (
-                    <Filter onClick={() => selectCategory(category)} key={index} active={categoryIsActive(category)}>
+                categories.map(category => (
+                    <Filter onClick={() => selectCategory(category)} key={category} active={categoryIsActive(category)}>
                         { category }
                     </Filter>
                 ))

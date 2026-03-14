@@ -20,7 +20,6 @@ export interface ProductsActions {
     fetchProducts: () => void
     setFilters: (filters: ProductFilter) => void
     clearFilters: () => void
-    applyFilters: () => void
     getCategories: () => string[]
     getPriceRange: () => { max: number, min: number }
 }
