@@ -47,11 +47,3 @@ Filters are made for sorting by cost and product categories.
 Responsive design for desktops, laptops, tablets, and phones
 
 ![Adaptability](docs/assets/4.mp4)
-
-
-<details>
-  <summary>Нажмите, чтобы увидеть демо (60 МБ)</summary>
-  
-  ![Демо GIF](https://raw.githubusercontent.com/Kneepy/ecom.tech-test-app.git/raw/master/docs/assets/1.gif)
-</details>
-
